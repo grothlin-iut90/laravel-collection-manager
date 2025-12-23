@@ -75,7 +75,7 @@ class ItemController extends Controller
 
     public function request(Item $item)
     {
-        // Logic to handle item request by a consumer (will add the item to their requested items list)
+        // TODO: Logic to handle item request by a consumer (will add the item to their requested items list)
         return back()->with('success', 'Item request sent successfully!');
     }
 }
