@@ -14,7 +14,11 @@
                     <p><strong>Rating:</strong> {{ $item->rating }}/5</p>
                     <p><strong>Condition:</strong> {{ $item->condition }}</p>
                     <p><strong>Category:</strong> {{ $item->category->label }}</p>
+                    @if (auth()->user()->role === 'provider' && auth()->id() === $item->provider_id)
                     <a href="{{ route('items.edit', $item) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</a>
+                    @elseif (auth()->user()->role === 'consumer')
+                    <a href="{{ route('items.request', $item) }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Request Item</a>
+                    @endif
                     <a href="{{ route('items.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Back to Items</a>
                 </div>
             </div>

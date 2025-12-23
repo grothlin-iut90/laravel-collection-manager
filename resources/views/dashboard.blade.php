@@ -15,8 +15,8 @@
             <a href="{{ route('categories.index') }}" class="item-link">Manage Categories</a>
             @endif
         </div>
+        @if (auth()->user()->role === 'consumer')
         <div class="object-grid">
-        <!-- All the items will be displayed in a grid view, and will be styled accordingly -->
          @foreach($items as $item)
             <div class="dashboard-content">
                 <h2>{{ $item->title }}</h2>
@@ -25,6 +25,7 @@
             </div>
          @endforeach
         </div>
+        @endif
     </div>
 </x-app-layout>
 <style>
