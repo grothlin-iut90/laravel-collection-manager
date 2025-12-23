@@ -9,7 +9,7 @@ class ItemPolicy
 {
     public function view(User $user, Item $item): bool
     {
-        return $user->id === $item->user_id;
+        return true; // Allow all authenticated users to view items
     }
 
     public function update(User $user, Item $item): bool

@@ -10,7 +10,12 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    if (auth()->user()->role === 'consumer') {
+        $items = \App\Models\Item::with('category')->get();
+    } else {
+        $items = auth()->user()->items()->with('category')->get();
+    }
+    return view('dashboard', compact('items'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

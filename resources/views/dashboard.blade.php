@@ -17,6 +17,13 @@
         </div>
         <div class="object-grid">
         <!-- All the items will be displayed in a grid view, and will be styled accordingly -->
+         @foreach($items as $item)
+            <div class="dashboard-content">
+                <h2>{{ $item->title }}</h2>
+                <p>{{ $item->description }}</p>
+                <a href="{{ route('items.show', $item->id) }}" class="item-link">View Item</a>
+            </div>
+         @endforeach
         </div>
     </div>
 </x-app-layout>
