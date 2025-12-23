@@ -27,7 +27,7 @@
                                 <td>{{ $item->rating }}/5</td>
                                 <td>
                                     <a href="{{ route('items.show', $item) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">View</a>
-                                    <a href="{{ route('items.edit', $item) }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Edit</a>
+                                    <a href="{{ route('items.edit', $item) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">Edit</a>
                                     <form action="{{ route('items.destroy', $item) }}" method="POST" style="display:inline;">
                                         @csrf @method('DELETE')
                                         <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>

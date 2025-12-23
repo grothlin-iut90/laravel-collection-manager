@@ -11,7 +11,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <a href="{{ route('categories.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add New Category</a>
-                    <table>
+                    <table class="min-w-full mt-4">
                         <thead></thead>
                             <tr>
                                 <th>Label</th>
@@ -23,11 +23,11 @@
                             <tr>
                                 <td>{{ $category->label }}</td>
                                 <td>
-                                    <a href="{{ route('categories.show', $category) }}">View</a>
-                                    <a href="{{ route('categories.edit', $category) }}">Edit</a>
+                                    <a href="{{ route('categories.show', $category) }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">View</a>
+                                    <a href="{{ route('categories.edit', $category) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">Edit</a>
                                     <form action="{{ route('categories.destroy', $category) }}" method="POST" style="display:inline;">
                                         @csrf @method('DELETE')
-                                        <button type="submit">Delete</button>
+                                        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
                                     </form>
                                 </td>
                             </tr>
