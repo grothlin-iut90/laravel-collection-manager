@@ -11,8 +11,8 @@
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
                     <br>
-                    <a href="{{ route('items.index') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Manage My Items</a>
-                    <a href="{{ route('categories.index') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Manage Categories</a>
+                    <a href="{{ route('items.index') }}" class="text-black font-bold py-2 px-4 rounded">Manage My Items</a>
+                    <a href="{{ route('categories.index') }}" class="text-black font-bold py-2 px-4 rounded">Manage Categories</a>
                 </div>
             </div>
         </div>
