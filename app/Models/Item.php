@@ -15,7 +15,8 @@ class Item extends Model
         'rating',
         'condition',
         'user_id',
-        'category_id'
+        'category_id',
+        'provider_id'
     ];
 
     public function user()

@@ -12,6 +12,8 @@
 
         <style>
         @import url('https://fonts.bunny.net/css?family=instrument-sans:400,500,600');
+        @import url('https://fonts.googleapis.com/css2?family=BBH+Bartle&display=swap');
+
 
         :root {
             /* Define Colors (Light Mode Default) */
@@ -147,6 +149,7 @@
             font-size: 2.25rem; /* text-4xl */
             font-weight: 600;
             line-height: 1.25;
+            font-family: 'BBH Bartle', sans-serif;
         }
 
         @media (min-width: 1024px) {

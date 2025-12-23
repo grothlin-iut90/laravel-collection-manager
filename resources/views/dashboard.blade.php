@@ -9,15 +9,50 @@
         <div class="dashboard-content">
             {{ __("You're logged in!") }}
             <br>
-            <a href="{{ route('items.index') }}" style="color: black; font-weight: bold; padding: 0.5rem 1rem; border-radius: 0.25rem;">Manage My Items</a>
-            @if(auth()->user()->role === 'provider' || auth()->user()->role === 'admin')
-            <a href="{{ route('categories.index') }}" style="color: black; font-weight: bold; padding: 0.5rem 1rem; border-radius: 0.25rem;">Manage Categories</a>
+            @if (auth()->user()->role === 'consumer')
+            <a href="{{ route('items.index') }}" class="item-link">Manage My Items</a>
+            @elseif (auth()->user()->role === 'provider' || auth()->user()->role === 'admin')
+            <a href="{{ route('categories.index') }}" class="item-link">Manage Categories</a>
             @endif
+        </div>
+        <div class="object-grid">
+        <!-- All the items will be displayed in a grid view, and will be styled accordingly -->
         </div>
     </div>
 </x-app-layout>
-<style> 
+<style>
+    :root {
+        --bg-body: #FDFDFC;
+        --text-main: #1b1b18;
+        --text-muted: #555551;
+        --primary-blue: #4A90E2;
+        --primary-blue-hover: #357ABD;
+        --border-color: rgba(25, 20, 0, 0.2);
+        --border-hover: rgba(25, 21, 1, 0.3);
+        --white: #ffffff;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --bg-body: #0a0a0a;
+            --text-main: #EDEDEC;
+            --text-muted: #A3A3A0;
+            --border-color: #3E3E3A;
+            --border-hover: #62605b;
+        }
+    }
+
+    body {
+        font-family: 'Instrument Sans', sans-serif;
+        background-color: var(--bg-body);
+        color: var(--text-main);
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 100vh;
+    }
+
     h2 {
+        font-family: "BBH Bartle", sans-serif;
         font-weight: 600; 
         font-size: 1.25rem; 
         color: #1f2937; 
@@ -41,5 +76,28 @@
         border-radius: 0.5rem;
         padding: 1.5rem; 
         color: #1a202c;
+    }
+
+    .item-link {
+        display: inline-block; 
+        margin-top: 1rem; 
+        padding: 0.5rem 1.5rem; 
+        background-color: #3b82f6; 
+        color: white; 
+        text-decoration: none; 
+        border-radius: 0.125rem; 
+        font-size: 0.875rem; 
+        transition: background-color 0.2s;
+    }
+
+    .item-link:hover {
+        background-color: #2563eb; 
+    }
+
+    .object-grid {
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1.5rem;
     }
 </style>

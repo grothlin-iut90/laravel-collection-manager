@@ -11,6 +11,9 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('label');
+            // provider id, is the user_id from users table who is references to a 'provider'
+            $table->unsignedBigInteger('provider_id')->nullable();
+            $table->foreign('provider_id')->references('id')->on('users')->onDelete('set null');
             $table->timestamps();
         });
     }

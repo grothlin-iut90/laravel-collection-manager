@@ -28,10 +28,12 @@ class ItemController extends Controller
             'description' => 'required|string',
             'rating' => 'required|integer|min:1|max:5',
             'condition' => 'required|string|max:255',
+            'provider_id' => 'required|exists:users,id',
             'category_id' => 'required|exists:categories,id',
         ]);
 
-        Auth::user()->items()->create($request->all());
+        $category = Category::find($request->category_id);
+        Auth::user()->items()->create($request->all() + ['provider_id' => $category->provider_id]);
         return redirect()->route('items.index')->with('success', 'Item created successfully.');
     }
 
@@ -56,6 +58,7 @@ class ItemController extends Controller
             'description' => 'required|string',
             'rating' => 'required|integer|min:1|max:5',
             'condition' => 'required|string|max:255',
+            'provider_id' => 'required|exists:users,id',
             'category_id' => 'required|exists:categories,id',
         ]);
 
