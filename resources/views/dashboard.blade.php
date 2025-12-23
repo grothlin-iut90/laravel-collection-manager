@@ -12,7 +12,9 @@
                     {{ __("You're logged in!") }}
                     <br>
                     <a href="{{ route('items.index') }}" class="text-black font-bold py-2 px-4 rounded">Manage My Items</a>
+                    @if(auth()->user()->role === 'provider' || auth()->user()->role === 'admin')
                     <a href="{{ route('categories.index') }}" class="text-black font-bold py-2 px-4 rounded">Manage Categories</a>
+                    @endif
                 </div>
             </div>
         </div>
