@@ -11,6 +11,8 @@
             <br>
             @if (auth()->user()->role === 'consumer')
             <a href="{{ route('items.index') }}" class="item-link">Manage My Items</a>
+            <a href="{{ route('collections.index') }}">Browse Collections</a>
+            <a href="{{ route('stats') }}">Statistics</a>
             @elseif (auth()->user()->role === 'provider' || auth()->user()->role === 'admin')
             <a href="{{ route('categories.index') }}" class="item-link">Manage Categories</a>
             @endif

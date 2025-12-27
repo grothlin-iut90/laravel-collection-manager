@@ -28,4 +28,17 @@ Route::resource('items', ItemController::class)->middleware('auth');
 Route::get('items/{item}/request', [ItemController::class, 'request'])->name('items.request')->middleware('auth');
 Route::resource('categories', CategoryController::class)->middleware('auth');
 
+Route::get('/collections', function () {
+    $users = \App\Models\User::where('role', 'consumer')->with('items.category')->get();
+    return view('collections.index', compact('users'));
+})->name('collections.index');
+
+Route::get('/stats', function () {
+    $totalItems = \App\Models\Item::count();
+    $totalUsers = \App\Models\User::where('role', 'consumer')->count();
+    $totalCategories = \App\Models\Category::count();
+    $avgRating = \App\Models\Item::avg('rating');
+    return view('stats', compact('totalItems', 'totalUsers', 'totalCategories', 'avgRating'));
+})->name('stats');
+
 require __DIR__.'/auth.php';
