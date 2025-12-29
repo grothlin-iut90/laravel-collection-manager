@@ -21,10 +21,17 @@
                     <p><strong>Condition:</strong> {{ $item->condition }}</p>
                     <p><strong>Category:</strong> {{ $item->category->label }}</p>
                     <p><strong>Provider:</strong> {{ $item->provider->name }} ({{ $item->provider->email }})</p>
-                    @if (auth()->user()->role === 'provider' && auth()->id() === $item->provider_id)
-                    <button onclick="window.location.href='{{ route('items.edit', $item->id) }}'" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm mt-4">
+                    @if (auth()->user()->role === 'provider' && auth()->id() === $item->provider_id || auth()->user()->role === 'admin')
+                    <button onclick="window.location.href='{{ route('items.edit', $item->id) }}'" class="button-success">
                         Edit
                     </button>
+                    <form action="{{ route('items.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Delete this item?');" class="inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="button-danger">
+                            Delete
+                        </button>
+                    </form>
                     @elseif (auth()->user()->role === 'consumer')
 
                     <br/>
