@@ -116,7 +116,6 @@ class SampleDataSeeder extends Seeder
 
         // Insert items
         DB::table('items')->insert([
-            // Fournisseur 1 / Utilisateur 2
             [
                 'id' => 1,
                 'title' => 'The Great Gatsby',
@@ -125,7 +124,6 @@ class SampleDataSeeder extends Seeder
                 'condition' => 'New',
                 'user_id' => 2,
                 'category_id' => 1,
-                'provider_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -137,7 +135,6 @@ class SampleDataSeeder extends Seeder
                 'condition' => 'Good',
                 'user_id' => 2,
                 'category_id' => 2,
-                'provider_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -149,7 +146,6 @@ class SampleDataSeeder extends Seeder
                 'condition' => 'Used',
                 'user_id' => 2,
                 'category_id' => 1,
-                'provider_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -162,7 +158,6 @@ class SampleDataSeeder extends Seeder
                 'condition' => 'Excellent',
                 'user_id' => 3,
                 'category_id' => 3,
-                'provider_id' => 4,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -174,7 +169,6 @@ class SampleDataSeeder extends Seeder
                 'condition' => 'Like New',
                 'user_id' => 3,
                 'category_id' => 4,
-                'provider_id' => 4,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -186,7 +180,6 @@ class SampleDataSeeder extends Seeder
                 'condition' => 'Good',
                 'user_id' => 3,
                 'category_id' => 1,
-                'provider_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -198,7 +191,6 @@ class SampleDataSeeder extends Seeder
                 'condition' => 'New',
                 'user_id' => 3,
                 'category_id' => 4,
-                'provider_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -210,7 +202,6 @@ class SampleDataSeeder extends Seeder
                 'condition' => 'Excellent',
                 'user_id' => 3,
                 'category_id' => 5,
-                'provider_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -222,7 +213,6 @@ class SampleDataSeeder extends Seeder
                 'condition' => 'Used',
                 'user_id' => 3,
                 'category_id' => 3,
-                'provider_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -234,7 +224,6 @@ class SampleDataSeeder extends Seeder
                 'condition' => 'New',
                 'user_id' => 3,
                 'category_id' => 6,
-                'provider_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -247,7 +236,6 @@ class SampleDataSeeder extends Seeder
                 'condition' => 'Excellent',
                 'user_id' => 1,
                 'category_id' => 7,
-                'provider_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -259,7 +247,6 @@ class SampleDataSeeder extends Seeder
                 'condition' => 'Used',
                 'user_id' => 1,
                 'category_id' => 8,
-                'provider_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -271,7 +258,6 @@ class SampleDataSeeder extends Seeder
                 'condition' => 'Good',
                 'user_id' => 1,
                 'category_id' => 4,
-                'provider_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -283,10 +269,50 @@ class SampleDataSeeder extends Seeder
                 'condition' => 'New',
                 'user_id' => 1,
                 'category_id' => 4,
-                'provider_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+        ]);
+
+        // Insert collections
+        DB::table('collections')->insert([
+            [
+                'id' => 1,
+                'name' => 'My Favorite Books',
+                'description' => 'A collection of my favorite books.',
+                'user_id' => 2,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 2,
+                'name' => 'Sci-Fi Movies',
+                'description' => 'Movies that bend reality.',
+                'user_id' => 2,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 3,
+                'name' => 'Rare Items',
+                'description' => 'Valuable and rare collectibles.',
+                'user_id' => 3,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
+
+        // Insert item_collection pivot
+        DB::table('item_collection')->insert([
+            ['item_id' => 1, 'collection_id' => 1], // The Great Gatsby in Favorite Books
+            ['item_id' => 3, 'collection_id' => 1], // 1984 in Favorite Books
+            ['item_id' => 2, 'collection_id' => 2], // Inception in Sci-Fi Movies
+            ['item_id' => 4, 'collection_id' => 3], // Bohemian Rhapsody in Rare Items
+            ['item_id' => 5, 'collection_id' => 3], // The Witcher 3 in Rare Items
+            ['item_id' => 7, 'collection_id' => 3], // Pikachu Illustrator in Rare Items
+            ['item_id' => 8, 'collection_id' => 3], // Dark Side of the Moon in Rare Items
+            ['item_id' => 10, 'collection_id' => 3], // One Piece Tome 1 in Rare Items
+            ['item_id' => 14, 'collection_id' => 3], // Charizard in Rare Items
         ]);
     }
 }

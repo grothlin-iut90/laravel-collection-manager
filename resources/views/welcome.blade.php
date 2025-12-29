@@ -94,6 +94,7 @@
         /* Hero Section */
         .hero-section {
             display: flex;
+            width: 65vw;
             flex-direction: column;
             align-items: flex-start;
             text-align: left;
@@ -136,7 +137,7 @@
             margin-top: 1rem;
             padding: 0.5rem 1.5rem; /* px-6 py-2 */
             background-color: var(--primary-color);
-            color: var(--white);
+            color: var(--text-button);
             text-decoration: none;
             border-radius: 0.125rem; /* rounded-sm */
             font-size: 0.875rem; /* text-sm */
@@ -159,10 +160,25 @@
         <nav class="nav-menu">
             <a href="/login" class="nav-link">Log in</a>
             <a href="/register" class="nav-link active">Register</a>
+            <button @click="darkMode = !darkMode" type="button" class="inline-flex items-center p-2 border border-transparent rounded-full shadow-sm text-white bg-[--primary-color] hover:bg-[--primary-color-hover] focus:outline-none transition ease-in-out duration-150">
+                <svg x-show="darkMode" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+                <svg x-show="!darkMode" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+            </button>
         </nav>
     </header>
 
-    <div class="content-wrapper">
+    <body x-data="{ 
+        darkMode: localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) 
+    }" 
+    x-init="$watch('darkMode', val => {
+        localStorage.setItem('theme', val ? 'dark' : 'light');
+        document.documentElement.classList.toggle('dark', val);
+    }); if(darkMode) document.documentElement.classList.add('dark');"
+    class="content-wrapper">
         <div class="hero-section">
             <h1 class="hero-title">
                 Welcome to <span class="highlight-text">Our Application</span>
@@ -178,5 +194,5 @@
                 </a>
             </div>
         </div>
-    </div>
+    </body>
 </x-app-layout>

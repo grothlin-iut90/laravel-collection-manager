@@ -28,4 +28,9 @@ class Item extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function collections()
+    {
+        return $this->belongsToMany(Collection::class, 'item_collection');
+    }
 }

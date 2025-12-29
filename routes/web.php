@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,12 +29,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('items', ItemController::class)->middleware('auth');
-Route::get('items/{item}/request', [ItemController::class, 'request'])->name('items.request')->middleware('auth');
 Route::resource('categories', CategoryController::class)->middleware('auth');
 
-Route::get('/collections', function () {
-    $users = \App\Models\User::where('role', 'consumer')->with('items.category')->get();
-    return view('collections.index', compact('users'));
-})->name('collections.index');
+Route::resource('collections', CollectionController::class)->middleware('auth');
+Route::post('collections/add-item', [CollectionController::class, 'addItem'])->name('collections.addItem')->middleware('auth');
+Route::delete('collections/{collection}/remove-item/{itemId}', [CollectionController::class, 'removeItem'])->name('collections.removeItem')->middleware('auth');
 
 require __DIR__.'/auth.php';
