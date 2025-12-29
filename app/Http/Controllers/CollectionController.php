@@ -12,7 +12,7 @@ class CollectionController extends Controller
      */
     public function index()
     {
-        $collections = auth()->user()->collections()->with(['items' => function($query) {
+        $collections = auth()->user()->collections()->with(['items' => function ($query) {
             $query->limit(5);
         }])->withCount('items')->get();
         return view('collections.index', compact('collections'));
@@ -100,8 +100,7 @@ class CollectionController extends Controller
         // Si l'utilisateur tente d'ajouter à la collection d'un autre, la requete echoue (404)
         $collection = auth()->user()->collections()->findOrFail($request->collection_id);
 
-        // 'syncWithoutDetaching' évite de créer des doublons si l'item est déjà dans la collection.
-        $collection->items()->syncWithoutDetaching([$request->item_id]);
+        $collection->items()->attach([$request->item_id]);
 
         return back()->with('success', 'Item added to the collection.');
     }
