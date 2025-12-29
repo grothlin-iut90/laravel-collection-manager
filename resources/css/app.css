@@ -14,8 +14,12 @@
     --text-button: #ffffff;
     --primary-color: #E3B23C;
     --primary-color-hover: #C39302;
-    --secondary-color: #F56960;
-    --secondary-color-hover: #bd3834;
+    --secondary-color: #A23E48;
+    --secondary-color-hover: #862d36;
+    --success-color: #9bcc67;
+    --success-color-hover: #709f3a;
+    --danger-color: #e74c3c;
+    --danger-color-hover: #c0392b;
     --border-color: rgba(25, 20, 0, 0.2);
     --border-hover: rgba(25, 21, 1, 0.3);
     --white: #ffffff;
@@ -33,6 +37,10 @@
     --primary-color-hover: #9E7B9B;
     --secondary-color: #e2718b;
     --secondary-color-hover: #b33f5e;
+    --success-color: #6eca90;
+    --success-color-hover: #3a8f5c;
+    --danger-color: #e64768;
+    --danger-color-hover: #a62745;
     --border-color: rgba(200, 200, 200, 0.2);
     --border-hover: rgba(200, 200, 200, 0.3);
     --white: #ffffff;
@@ -105,4 +113,32 @@ hr {
 .button-return:hover {
     background-color: var(--primary-color-hover);
     border-color: var(--primary-color-hover);
+}
+
+.button-success {
+    background-color: var(--success-color);
+    color: var(--text-button);
+    border: 1px solid var(--success-color);
+    padding: 8px 16px;
+    border-radius: 4px;
+    color: var(--text-button);
+}
+
+.button-success:hover {
+    background-color: var(--success-color-hover);
+    border-color: var(--success-color-hover);
+}
+
+.button-danger {
+    background-color: var(--danger-color);
+    color: var(--text-button);
+    border: 1px solid var(--danger-color);
+    padding: 8px 16px;
+    border-radius: 4px;
+    color: var(--text-button);
+}
+
+.button-danger:hover {
+    background-color: var(--danger-color-hover);
+    border-color: var(--danger-color-hover);
 }

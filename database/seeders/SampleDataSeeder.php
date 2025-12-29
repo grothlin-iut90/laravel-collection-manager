@@ -14,8 +14,8 @@ class SampleDataSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'id' => 1,
-                'name' => 'Provider One',
-                'email' => 'provider1@example.com',
+                'name' => 'Amazon',
+                'email' => 'amazon@example.com',
                 'email_verified_at' => null,
                 'password' => Hash::make('password'),
                 'role' => 'provider',
@@ -44,8 +44,8 @@ class SampleDataSeeder extends Seeder
             ],
             [
                 'id' => 4,
-                'name' => 'Provider Two',
-                'email' => 'provider2@example.com',
+                'name' => 'CDiscount',
+                'email' => 'cdiscount2@example.com',
                 'email_verified_at' => null,
                 'password' => Hash::make('password'),
                 'role' => 'provider',

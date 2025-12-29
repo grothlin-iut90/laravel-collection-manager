@@ -1,6 +1,27 @@
 <x-app-layout>
     <x-slot name="header" style="display: flex; justify-content: space-between; align-items: center;">
-        <h2>{{ $collection->name }}</h2>
+        <div class="header-first">
+            @if (!$editing)
+            <h2>{{ $collection->name }}</h2>
+            <!-- When clicked, switch to edit mode -->
+            <a href="{{ route('collections.show', ['collection' => $collection, 'edit' => true]) }}" class="button-edit" title="Edit Collection">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 .196-.12l6.813-6.814z"/>
+                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                </svg>
+            </a>
+            @else
+            <form action="{{ route('collections.update', $collection) }}" method="POST" class="inline">
+                @csrf
+                @method('PUT')
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <label for="">Title</label><input type="text" name="name" value="{{ $collection->name }}" class="border-b border-gray-300 focus:outline-none focus:border-blue-500" placeholder="Collection Name" required>
+                    <label for="">Description</label><input type="text" name="description" value="{{ $collection->description }}" class="border-b border-gray-300 focus:outline-none focus:border-blue-500" placeholder="Collection Description">
+                </div>
+                <button type="submit" class="button-primary ml-2">Finish Edit</button>
+            </form>
+            @endif 
+        </div>
         <a href="{{ route('collections.index') }}" class="button-return">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
@@ -9,7 +30,9 @@
         </a>
     </x-slot>
     <div class="container">
+        @if (!$editing)
         <h3>{{ $collection->description }}</h3>
+        @endif
         <hr>
         <table class="min-w-full" style="background-color: var(--bg-card); margin-top: 20px; border-radius: 8px; overflow: hidden;">
             <thead>
@@ -34,7 +57,7 @@
                             <form action="{{ route('collections.removeItem', [$collection, $item->id]) }}" method="POST" class="inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="button-secondary">Remove</button>
+                                <button type="submit" class="button-danger">Remove</button>
                             </form>
                         </td>
                     </tr>
@@ -51,5 +74,19 @@
         background-color: var(--bg-main);
         border-radius: 8px;
         margin: 0 auto;
+    }
+
+    .header-first {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .button-edit {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
     }
 </style>

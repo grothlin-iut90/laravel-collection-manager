@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2>Create New Collection</h2>
     </x-slot>
-    <div class="py-12">
+    <div class="container">
         <form action="{{ route('collections.store') }}" method="POST">
             @csrf
             <div class="mb-4">
@@ -17,3 +17,11 @@
         </form>
     </div>
 </x-app-layout>
+<style>
+    .container {
+        padding: 20px;
+        background-color: var(--bg-main);
+        border-radius: 8px;
+        margin: 0 auto;
+    }
+</style>

@@ -48,7 +48,8 @@ class CollectionController extends Controller
     {
         $this->authorize('view', $collection);
         $items = $collection->items()->with('category')->get();
-        return view('collections.show', compact('collection', 'items'));
+        $editing = request('edit', false);
+        return view('collections.show', compact('collection', 'items', 'editing'));
     }
 
     /**
@@ -73,7 +74,7 @@ class CollectionController extends Controller
 
         $collection->update($request->only(['name', 'description']));
 
-        return redirect()->route('collections.index')->with('success', 'Collection updated successfully.');
+        return redirect()->route('collections.show', $collection)->with('success', 'Collection updated successfully.');
     }
 
     /**
@@ -103,5 +104,29 @@ class CollectionController extends Controller
         $this->authorize('update', $collection);
         $collection->items()->detach($itemId);
         return back()->with('success', 'Item removed from collection.');
+    }
+
+    public function editTitle(Request $request, Collection $collection)
+    {
+        $this->authorize('update', $collection);
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $collection->update(['name' => $request->name]);
+
+        return back()->with('success', 'Collection title updated successfully.');
+    }
+
+    public function editDescription(Request $request, Collection $collection)
+    {
+        $this->authorize('update', $collection);
+        $request->validate([
+            'description' => 'nullable|string',
+        ]);
+
+        $collection->update(['description' => $request->description]);
+
+        return back()->with('success', 'Collection description updated successfully.');
     }
 }
