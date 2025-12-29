@@ -21,7 +21,7 @@
                                     @endforeach
                                 </ul>
                             </div>
-                            <a href="{{ route('collections.show', $collection) }}" class="button-primary">View Full List</a>
+                            <button onclick="window.location.href='{{ route('collections.show', $collection) }}'" class="button-primary">View Full List</button>
                         </div>
                     </div>
                 @endforeach

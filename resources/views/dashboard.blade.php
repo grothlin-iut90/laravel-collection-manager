@@ -10,9 +10,9 @@
             {{ __("You're logged in!") }}
             <br>
             @if (auth()->user()->role === 'consumer')
-            <a href="{{ route('collections.index') }}" class="item-link">Manage my lists</a>
+            <button onclick="window.location.href='{{ route('collections.index') }}'" class="item-link">Manage my lists</button>
             @elseif (auth()->user()->role === 'provider' || auth()->user()->role === 'admin')
-            <a href="{{ route('categories.index') }}" class="item-link">Manage Categories</a>
+            <button onclick="window.location.href='{{ route('categories.index') }}'" class="item-link">Manage Categories</button>
             @endif
         </div>
         @if (auth()->user()->role === 'consumer')
@@ -21,7 +21,7 @@
             <div class="item-card">
                 <h2>{{ $item->title }}</h2>
                 <p>{{ $item->description }}</p>
-                <a href="{{ route('items.show', $item->id) }}" class="item-link">View Item</a>
+                <button onclick="window.location.href='{{ route('items.show', $item->id) }}'" class="item-link">View Item</button>
             </div>
          @endforeach
         </div>
