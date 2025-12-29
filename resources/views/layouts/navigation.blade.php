@@ -15,11 +15,9 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     @if(auth()->user()->role === 'consumer')
-                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('collections.index')" :active="request()->routeIs('collections.*')" style="color: var(--text-main);">
-                            {{ __('My Collections') }}
-                        </x-nav-link>
-                    </div>
+                    <x-nav-link :href="route('collections.index')" :active="request()->routeIs('collections.*')" style="color: var(--text-main);">
+                        {{ __('My Collections') }}
+                    </x-nav-link>
                     @endif
                 </div>
             </div>
