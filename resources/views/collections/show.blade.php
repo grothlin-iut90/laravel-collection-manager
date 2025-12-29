@@ -45,36 +45,40 @@
             @endif
         </div>
         <hr>
-        <table class="min-w-full" style="background-color: var(--bg-card); margin-top: 20px; border-radius: 8px; overflow: hidden;">
-            <thead style="border-bottom: 2px solid var(--border-color);">
-                <tr>
-                    <th class="py-2 px-4 border-b">Title</th>
-                    <th class="py-2 px-4 border-b">Description</th>
-                    <th class="py-2 px-4 border-b">Category</th>
-                    <th class="py-2 px-4 border-b">Rating</th>
-                    <th class="py-2 px-4 border-b">Condition</th>
-                    <th class="py-2 px-4 border-b">Actions</th>
-                </tr>
-            </thead>
-            <tbody style="border-bottom: 2px solid var(--border-color);">
-                @foreach($items as $item)
+        @if ($items->isEmpty())
+            <p>This collection is empty.</p>
+        @else
+            <table class="min-w-full" style="background-color: var(--bg-card); margin-top: 20px; border-radius: 8px; overflow: hidden;">
+                <thead style="border-bottom: 2px solid var(--border-color);">
                     <tr>
-                        <td class="py-2 px-4 border-b">{{ $item->title }}</td>
-                        <td class="py-2 px-4 border-b">{{ $item->description }}</td>
-                        <td class="py-2 px-4 border-b text-center">{{ $item->category->label }}</td>
-                        <td class="py-2 px-4 border-b text-center">{{ $item->rating }}/5</td>
-                        <td class="py-2 px-4 border-b text-center">{{ $item->condition }}</td>
-                        <td class="py-2 px-4 border-b text-center">
-                            <form action="{{ route('collections.removeItem', [$collection, $item->id]) }}" method="POST" class="inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="button-danger">Remove</button>
-                            </form>
-                        </td>
+                        <th class="py-2 px-4 border-b">Title</th>
+                        <th class="py-2 px-4 border-b">Description</th>
+                        <th class="py-2 px-4 border-b">Category</th>
+                        <th class="py-2 px-4 border-b">Rating</th>
+                        <th class="py-2 px-4 border-b">Condition</th>
+                        <th class="py-2 px-4 border-b">Actions</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody style="border-bottom: 2px solid var(--border-color);">
+                    @foreach($items as $item)
+                        <tr>
+                            <td class="py-2 px-4 border-b">{{ $item->title }}</td>
+                            <td class="py-2 px-4 border-b">{{ $item->description }}</td>
+                            <td class="py-2 px-4 border-b text-center">{{ $item->category->label }}</td>
+                            <td class="py-2 px-4 border-b text-center">{{ $item->rating }}/5</td>
+                            <td class="py-2 px-4 border-b text-center">{{ $item->condition }}</td>
+                            <td class="py-2 px-4 border-b text-center">
+                                <form action="{{ route('collections.removeItem', [$collection, $item->id]) }}" method="POST" class="inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="button-danger">Remove</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        @endif
         <a href="{{ route('dashboard') }}" class="button-return">Want to add an item ?</a>
         <hr>
     </div>
