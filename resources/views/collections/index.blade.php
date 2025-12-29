@@ -1,18 +1,18 @@
 <x-app-layout>
     <x-slot name="header">
         <h2>My Collections</h2>
-        <a href="{{ route('collections.create') }}" class="btn btn-primary">Create New Collection</a>
+        <a href="{{ route('collections.create') }}" class="button-primary">Create New Collection</a>
     </x-slot>
-    <div class="py-12">
+    <div class="container">
         @if($collections->isEmpty())
-            <p>You have no collections yet. <a href="{{ route('collections.create') }}">Create one</a>.</p>
+            <p>You have no collections yet. <a href="{{ route('collections.create') }}" class="button-primary">Create one</a>.</p>
         @else
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 gap-6">
                 @foreach($collections as $collection)
-                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div class="p-6 bg-white border-b border-gray-200">
+                    <div class="col-span-1" style="background-color: var(--bg-main); border-radius: 8px; padding: 10px;">
+                        <div class="p-7" style="background-color: var(--bg-card); border-radius: 8px;">
                             <h3 class="text-lg font-semibold">{{ $collection->name }}</h3>
-                            <p class="text-gray-600">{{ $collection->description }}</p>
+                            <p style="color: var(--text-muted);">{{ $collection->description }}</p>
                             <div class="mt-4">
                                 <h4 class="font-medium">Items ({{ $collection->items_count }})</h4>
                                 <ul class="list-disc list-inside">
@@ -21,7 +21,7 @@
                                     @endforeach
                                 </ul>
                             </div>
-                            <a href="{{ route('collections.show', $collection) }}" class="mt-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">View Full List</a>
+                            <a href="{{ route('collections.show', $collection) }}" class="button-primary">View Full List</a>
                         </div>
                     </div>
                 @endforeach
@@ -29,3 +29,13 @@
         @endif
     </div>
 </x-app-layout>
+<style>
+    .container {
+        max-width: 800px;
+        height: auto;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: var(--bg-main);
+        border-radius: 8px;
+    }
+</style>

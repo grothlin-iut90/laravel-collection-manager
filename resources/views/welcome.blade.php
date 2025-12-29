@@ -147,13 +147,6 @@
         .btn-primary:hover {
             background-color: var(--primary-color-hover);
         }
-
-        hr {
-            border: none;
-            border-top: 1px solid var(--border-color);
-            width: 100%;
-            margin: 1rem 0;
-        }
     </style>
 
     <header class="main-header">

@@ -14,6 +14,8 @@
     --text-button: #ffffff;
     --primary-color: #E3B23C;
     --primary-color-hover: #C39302;
+    --secondary-color: #F56960;
+    --secondary-color-hover: #bd3834;
     --border-color: rgba(25, 20, 0, 0.2);
     --border-hover: rgba(25, 21, 1, 0.3);
     --white: #ffffff;
@@ -29,6 +31,8 @@
     --text-button: #1A1F29;
     --primary-color: #CB9CF2;
     --primary-color-hover: #9E7B9B;
+    --secondary-color: #e2718b;
+    --secondary-color-hover: #b33f5e;
     --border-color: rgba(200, 200, 200, 0.2);
     --border-hover: rgba(200, 200, 200, 0.3);
     --white: #ffffff;
@@ -38,4 +42,67 @@
 * {
     margin: 0;
     padding: 0;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.custom-header-container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button-primary {
+    background-color: var(--primary-color);
+    color: var(--text-button);
+    border: 1px solid var(--primary-color);
+    padding: 8px 16px;
+    margin: 10px 0;
+    border-radius: 4px;
+    color: var(--text-button);
+}
+
+.button-primary:hover {
+    background-color: var(--primary-color-hover);
+    border-color: var(--primary-color-hover);
+}
+
+.button-secondary {
+    background-color: var(--secondary-color);
+    color: var(--text-button);
+    border: 1px solid var(--secondary-color);
+    padding: 8px 16px;
+    border-radius: 4px;
+    color: var(--text-button);
+}
+
+.button-secondary:hover {
+    background-color: var(--secondary-color-hover);
+    border-color: var(--secondary-color-hover);
+}
+
+.button-return {
+    background-color: var(--primary-color);
+    color: var(--text-button);
+    border: 1px solid var(--primary-color);
+    padding: 4px 8px;
+    margin: 10px 0;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.button-return:hover {
+    background-color: var(--primary-color-hover);
+    border-color: var(--primary-color-hover);
 }
