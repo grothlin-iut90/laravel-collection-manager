@@ -15,8 +15,10 @@
                 <button onclick="window.location.href='{{ route('items.create') }}'" class="button-primary">
                     + Add Item
                 </button>
-            @elseif (auth()->user()->role === 'admin')
-                <button onclick="window.location.href='{{ route('categories.index') }}'" class="button-primary">Manage Categories</button>
+                @if (auth()->user()->role === 'admin')
+                    <button onclick="window.location.href='{{ route('categories.index') }}'" class="button-primary">Manage Categories</button>
+                @endif
+
             @endif
         </div>
         @if (in_array(auth()->user()->role, ['consumer', 'provider']))
