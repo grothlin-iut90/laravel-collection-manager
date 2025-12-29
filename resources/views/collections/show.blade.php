@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header" style="display: flex; justify-content: space-between; align-items: center;">
-        <div class="header-first">
+        <div class="header-title header-first">
             @if (!$editing)
             <h2>{{ $collection->name }}</h2>
             <!-- When clicked, switch to edit mode -->

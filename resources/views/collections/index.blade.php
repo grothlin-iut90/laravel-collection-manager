@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2>My Collections</h2>
+        <h2 class="header-title">My Collections</h2>
         <a href="{{ route('collections.create') }}" class="button-primary">Create New Collection</a>
     </x-slot>
     <div class="container">
