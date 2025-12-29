@@ -61,6 +61,12 @@ hr {
     margin: 1rem 0;
 }
 
+.header-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-header);
+}
+
 .custom-header-container {
     max-width: 1120px;
     margin: 0 auto;
