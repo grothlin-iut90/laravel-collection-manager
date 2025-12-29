@@ -1,10 +1,11 @@
 <x-app-layout>
     <style>
         /* Base Reset & Layout */
-        * {
-            box-sizing: border-box;
+        *, *:before, *:after {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            position: relative;
         }
 
         body {
@@ -121,7 +122,11 @@
             }
         }
 
-        .highlight-text {
+        span {
+            font-size: 6rem;
+        }
+
+        span.highlight-text {
             color: var(--primary-color);
         }
 
@@ -174,7 +179,7 @@
     class="content-wrapper">
         <div class="hero-section">
             <h1 class="hero-title">
-                Welcome to <span class="highlight-text">Geekify</span>
+                Welcome to <i><span>GEEK<span class="highlight-text">IFY</span></i>
             </h1>
             <hr>
             <p class="hero-description">
