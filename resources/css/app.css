@@ -20,6 +20,8 @@
     --success-color-hover: #709f3a;
     --danger-color: #e74c3c;
     --danger-color-hover: #c0392b;
+    --edit-color: #449635;
+    --edit-color-hover: #5a7d3e;
     --border-color: rgba(25, 20, 0, 0.2);
     --border-hover: rgba(25, 21, 1, 0.3);
     --white: #ffffff;
@@ -141,4 +143,17 @@ hr {
 .button-danger:hover {
     background-color: var(--danger-color-hover);
     border-color: var(--danger-color-hover);
+}
+
+.button-edit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: var(--edit-color);
+}
+
+.button-edit:hover {
+    color: var(--edit-color-hover);
 }
