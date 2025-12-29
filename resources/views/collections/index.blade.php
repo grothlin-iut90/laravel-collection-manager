@@ -15,3 +15,9 @@
         @endforeach
     </div>
 </x-app-layout>
+<style>
+    h3 {
+        margin-top: 20px;
+        background-color: var(--primary-blue);
+    }
+</style>

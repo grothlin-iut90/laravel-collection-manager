@@ -1,3 +1,22 @@
+@import url('https://fonts.bunny.net/css?family=instrument-sans:400,500,600');
+@import url('https://fonts.googleapis.com/css2?family=BBH+Bartle&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --bg-body: #FDFDFC;
+    --text-main: #1b1b18;
+    --text-muted: #555551;
+    --primary-blue: #4A90E2;
+    --primary-blue-hover: #357ABD;
+    --border-color: rgba(25, 20, 0, 0.2);
+    --border-hover: rgba(25, 21, 1, 0.3);
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}

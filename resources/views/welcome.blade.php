@@ -1,41 +1,6 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>{{ config('app.name', 'Laravel') }}</title>
-
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
-        <style>
-        @import url('https://fonts.bunny.net/css?family=instrument-sans:400,500,600');
+<x-app-layout>
+    <style>
         @import url('https://fonts.googleapis.com/css2?family=BBH+Bartle&display=swap');
-
-
-        :root {
-            /* Define Colors (Light Mode Default) */
-            --bg-body: #FDFDFC;
-            --text-main: #1b1b18;
-            --text-muted: #555551;
-            --primary-blue: #4A90E2;
-            --primary-blue-hover: #357ABD;
-            --border-color: rgba(25, 20, 0, 0.2);
-            --border-hover: rgba(25, 21, 1, 0.3);
-            --white: #ffffff;
-        }
-
-        /* Dark Mode Overrides (matches user system preference) */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-body: #0a0a0a;
-                --text-main: #EDEDEC;
-                --text-muted: #A3A3A0;
-                --border-color: #3E3E3A;
-                --border-hover: #62605b;
-            }
-        }
 
         /* Base Reset & Layout */
         * {
@@ -183,31 +148,29 @@
         .btn-primary:hover {
             background-color: var(--primary-blue-hover);
         }
-        </style>
-        
-        <header class="main-header">
-            <nav class="nav-menu">
-                <a href="/login" class="nav-link">Log in</a>
-                <a href="/register" class="nav-link active">Register</a>
-            </nav>
-        </header>
+    </style>
 
-        <div class="content-wrapper">
-            <div class="hero-section">
-                <h1 class="hero-title">
-                    Welcome to <span class="highlight-text">Our Application</span>
-                </h1>
-                <p class="hero-description">
-                    This is a sample welcome page built with Laravel and converted to vanilla CSS. Explore the features and get started with your project!
-                </p>
-                
-                <div class="cta-group">
-                    <a href="/login" class="btn-primary">
-                        Log in
-                    </a>
-                </div>
+    <header class="main-header">
+        <nav class="nav-menu">
+            <a href="/login" class="nav-link">Log in</a>
+            <a href="/register" class="nav-link active">Register</a>
+        </nav>
+    </header>
+
+    <div class="content-wrapper">
+        <div class="hero-section">
+            <h1 class="hero-title">
+                Welcome to <span class="highlight-text">Our Application</span>
+            </h1>
+            <p class="hero-description">
+                This is a sample welcome page built with Laravel and converted to vanilla CSS. Explore the features and get started with your project!
+            </p>
+            
+            <div class="cta-group">
+                <a href="/login" class="btn-primary">
+                    Log in
+                </a>
             </div>
         </div>
-
-    </body>
-</html>
+    </div>
+</x-app-layout>

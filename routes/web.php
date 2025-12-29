@@ -6,6 +6,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+    if (auth()->check()) {
+        return redirect()->route('dashboard');
+    }
     return view('welcome');
 });
 
@@ -32,13 +35,5 @@ Route::get('/collections', function () {
     $users = \App\Models\User::where('role', 'consumer')->with('items.category')->get();
     return view('collections.index', compact('users'));
 })->name('collections.index');
-
-Route::get('/stats', function () {
-    $totalItems = \App\Models\Item::count();
-    $totalUsers = \App\Models\User::where('role', 'consumer')->count();
-    $totalCategories = \App\Models\Category::count();
-    $avgRating = \App\Models\Item::avg('rating');
-    return view('stats', compact('totalItems', 'totalUsers', 'totalCategories', 'avgRating'));
-})->name('stats');
 
 require __DIR__.'/auth.php';
