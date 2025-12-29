@@ -87,16 +87,23 @@ class CollectionController extends Controller
         return redirect()->route('collections.index')->with('success', 'Collection deleted successfully.');
     }
 
-    public function addItem(Request $request, Collection $collection)
+    /**
+     * Add an item to a collection.
+     */
+    public function addItem(Request $request)
     {
-        $this->authorize('update', $collection);
         $request->validate([
             'item_id' => 'required|exists:items,id',
+            'collection_id' => 'required|exists:collections,id',
         ]);
 
-        $collection->items()->attach($request->item_id);
+        // Si l'utilisateur tente d'ajouter à la collection d'un autre, la requete echoue (404)
+        $collection = auth()->user()->collections()->findOrFail($request->collection_id);
 
-        return back()->with('success', 'Item added to collection.');
+        // 'syncWithoutDetaching' évite de créer des doublons si l'item est déjà dans la collection.
+        $collection->items()->syncWithoutDetaching([$request->item_id]);
+
+        return back()->with('success', 'Item added to the collection.');
     }
 
     public function removeItem(Collection $collection, $itemId)
