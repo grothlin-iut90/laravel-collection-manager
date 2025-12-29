@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-[--bg-card] border-b border-[--border-color] transition-colors duration-300">    <!-- Primary Navigation Menu -->
+<nav x-data="{ open: false }" class="bg-[--bg-card] border-b border-[--border-color] transition-colors duration-300"> <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex h-16">
             <div class="flex">
@@ -14,6 +14,13 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" style="color: var(--text-main);">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @if(auth()->user()->role === 'consumer')
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('collections.index')" :active="request()->routeIs('collections.*')" style="color: var(--text-main);">
+                            {{ __('My Collections') }}
+                        </x-nav-link>
+                    </div>
+                    @endif
                 </div>
             </div>
 
@@ -43,7 +50,7 @@
                                 @csrf
 
                                 <x-dropdown-link :href="route('logout')"
-                                        onclick="event.preventDefault();
+                                    onclick="event.preventDefault();
                                                     this.closest('form').submit();">
                                     {{ __('Log Out') }}
                                 </x-dropdown-link>
@@ -101,7 +108,7 @@
                     @csrf
 
                     <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
+                        onclick="event.preventDefault();
                                         this.closest('form').submit();">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
@@ -112,19 +119,20 @@
 </nav>
 <style>
     .dropdown-button {
-        color: var(--text-main); 
-        background-color: var(--bg-card); 
-        border-color: var(--border-color); 
+        color: var(--text-main);
+        background-color: var(--bg-card);
+        border-color: var(--border-color);
         border: 1px solid;
     }
-    
-    div.absolute.z-50.mt-2.w-48.rounded-md.shadow-lg.ltr\:origin-top-right.rtl\:origin-top-left.end-0 > div {
+
+    div.absolute.z-50.mt-2.w-48.rounded-md.shadow-lg.ltr\:origin-top-right.rtl\:origin-top-left.end-0>div {
         background-color: var(--bg-card);
         border: 1px solid var(--border-color);
         color: var(--text-main);
     }
 
-    div.absolute.z-50.mt-2.w-48.rounded-md.shadow-lg.ltr\:origin-top-right.rtl\:origin-top-left.end-0 > div > a:hover, div.absolute.z-50.mt-2.w-48.rounded-md.shadow-lg.ltr\:origin-top-right.rtl\:origin-top-left.end-0 > div > form > a:hover {
+    div.absolute.z-50.mt-2.w-48.rounded-md.shadow-lg.ltr\:origin-top-right.rtl\:origin-top-left.end-0>div>a:hover,
+    div.absolute.z-50.mt-2.w-48.rounded-md.shadow-lg.ltr\:origin-top-right.rtl\:origin-top-left.end-0>div>form>a:hover {
         background-color: var(--bg-hover);
         color: var(--text-main);
     }
