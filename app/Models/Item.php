@@ -33,4 +33,9 @@ class Item extends Model
     {
         return $this->belongsToMany(Collection::class, 'item_collection');
     }
+
+    public function provider()
+    {
+        return $this->belongsTo(User::class, 'provider_id');
+    }
 }

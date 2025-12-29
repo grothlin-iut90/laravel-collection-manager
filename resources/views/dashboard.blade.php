@@ -10,21 +10,46 @@
             {{ __("You're logged in!") }}
             <br>
             @if (auth()->user()->role === 'consumer')
-            <button onclick="window.location.href='{{ route('collections.index') }}'" class="button-primary">Manage my lists</button>
+                <button onclick="window.location.href='{{ route('collections.index') }}'" class="button-primary">Manage my lists</button>
             @elseif (auth()->user()->role === 'provider' || auth()->user()->role === 'admin')
-            <button onclick="window.location.href='{{ route('categories.index') }}'" class="button-primary">Manage Categories</button>
+                <button onclick="window.location.href='{{ route('items.create') }}'" class="button-primary">
+                    + Add Item
+                </button>
+            @elseif (auth()->user()->role === 'admin')
+                <button onclick="window.location.href='{{ route('categories.index') }}'" class="button-primary">Manage Categories</button>
             @endif
         </div>
-        @if (auth()->user()->role === 'consumer')
-        <div class="object-grid">
-         @foreach($items as $item)
-            <div class="item-card">
-                <h2>{{ $item->title }}</h2>
-                <p>{{ $item->description }}</p>
-                <button onclick="window.location.href='{{ route('items.show', $item->id) }}'" class="button-primary">View Item</button>
+        @if (in_array(auth()->user()->role, ['consumer', 'provider']))
+
+            @if(auth()->user()->role === 'provider')
+                <h3 class="text-xl font-bold mb-4">Provided items : </h3>
+            @endif
+            <div class="object-grid">
+            @foreach($items as $item)
+                <div class="item-card">
+                    <h2>{{ $item->title }}</h2>
+                    <p>{{ $item->description }}</p>
+                    <div class="mt-4 flex gap-2">
+                        <button onclick="window.location.href='{{ route('items.show', $item->id) }}'" class="button-primary w-full">
+                            View Item
+                        </button>
+
+                        @if(auth()->user()->role === 'provider')
+                            <button onclick="window.location.href='{{ route('items.edit', $item->id) }}'" class="button-success w-full">
+                                Edit
+                            </button>
+                            <form action="{{ route('items.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Delete this item?');" class="inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="button-danger w-full">
+                                    Delete
+                                </button>
+                            </form>
+                        @endif
+                    </div>
+                </div>
+            @endforeach
             </div>
-         @endforeach
-        </div>
         @endif
     </div>
 </x-app-layout>

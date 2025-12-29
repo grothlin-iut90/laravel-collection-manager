@@ -35,7 +35,12 @@
                                 @endforeach
                             </select>
                         </div>
-                        <button type="submit">Create Item</button>
+
+                        <!-- Obligatoire car pour le moment on stocke un user_id -->
+                        <!-- Peut etre a retirer car doublon avec provider_id -->
+                        <input type="hidden" name="user_id" value="{{ auth()->id() }}">
+
+                        <button type="submit" class="button-primary">Create Item</button>
                     </form>
                 </div>
             </div>

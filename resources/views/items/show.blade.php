@@ -21,7 +21,9 @@
                     <p><strong>Condition:</strong> {{ $item->condition }}</p>
                     <p><strong>Category:</strong> {{ $item->category->label }}</p>
                     @if (auth()->user()->role === 'provider' && auth()->id() === $item->provider_id)
-                    <a href="{{ route('items.edit', $item) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</a>
+                    <button onclick="window.location.href='{{ route('items.edit', $item->id) }}'" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm mt-4">
+                        Edit
+                    </button>
                     @elseif (auth()->user()->role === 'consumer')
 
                     <br/>

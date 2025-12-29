@@ -108,6 +108,7 @@ hr {
     color: var(--text-button);
     border: 1px solid var(--secondary-color);
     padding: var(--padding-button);
+    margin: 10px 0;
     border-radius: var(--border-radius-button);
     color: var(--text-button);
 }
@@ -140,6 +141,7 @@ hr {
     color: var(--text-button);
     border: 1px solid var(--success-color);
     padding: var(--padding-button);
+    margin: 10px 0;
     border-radius: var(--border-radius-button);
     color: var(--text-button);
 }
@@ -154,6 +156,7 @@ hr {
     color: var(--text-button);
     border: 1px solid var(--danger-color);
     padding: var(--padding-button);
+    margin: 10px 0;
     border-radius: var(--border-radius-button);
     color: var(--text-button);
 }

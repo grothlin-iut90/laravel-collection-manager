@@ -23,18 +23,20 @@ class ItemController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'rating' => 'required|integer|min:1|max:5',
             'condition' => 'required|string|max:255',
-            'provider_id' => 'required|exists:users,id',
             'category_id' => 'required|exists:categories,id',
+            'user_id' => 'required|exists:users,id',
         ]);
 
-        $category = Category::find($request->category_id);
-        Auth::user()->items()->create($request->all() + ['provider_id' => $category->provider_id]);
-        return redirect()->route('items.index')->with('success', 'Item created successfully.');
+        $item = new Item($validated);
+        $item->provider_id = Auth::id();
+        $item->save();
+
+        return redirect()->route('dashboard')->with('success', 'Item created successfully.');
     }
 
     public function show(Item $item)
@@ -45,31 +47,41 @@ class ItemController extends Controller
 
     public function edit(Item $item)
     {
-        $this->authorize('update', $item);
+        if (Auth::id() !== $item->provider_id) {
+            abort(403, 'Unauthorized action.');
+        }
+
         $categories = Category::all();
         return view('items.edit', compact('item', 'categories'));
     }
 
     public function update(Request $request, Item $item)
     {
-        $this->authorize('update', $item);
-        $request->validate([
+        if (Auth::id() !== $item->provider_id) {
+            abort(403);
+        }
+
+        $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'rating' => 'required|integer|min:1|max:5',
             'condition' => 'required|string|max:255',
-            'provider_id' => 'required|exists:users,id',
             'category_id' => 'required|exists:categories,id',
         ]);
 
-        $item->update($request->all());
-        return redirect()->route('items.index')->with('success', 'Item updated successfully.');
+        $item->update($validated);
+
+        return redirect()->route('dashboard')->with('success', 'Item updated successfully.');
     }
 
     public function destroy(Item $item)
     {
-        $this->authorize('delete', $item);
+        if (Auth::id() !== $item->provider_id) {
+            abort(403);
+        }
+
         $item->delete();
-        return redirect()->route('items.index')->with('success', 'Item deleted successfully.');
+
+        return redirect()->route('dashboard')->with('success', 'Item deleted successfully.');
     }
 }
