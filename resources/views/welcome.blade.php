@@ -174,15 +174,15 @@
     class="content-wrapper">
         <div class="hero-section">
             <h1 class="hero-title">
-                Welcome to <span class="highlight-text">Our Application</span>
+                Welcome to <span class="highlight-text">Geekify</span>
             </h1>
             <hr>
             <p class="hero-description">
-                This is a sample welcome page built with Laravel and converted to vanilla CSS. Explore the features and get started with your project!
+                Discover a world of possibilities with our platform. Join us today and start managing your geek collections with ease and efficiency.
             </p>
             
             <div class="cta-group">
-                <a href="/login" class="btn-primary">
+                <a href="/login" class="button-primary">
                     Log in
                 </a>
             </div>

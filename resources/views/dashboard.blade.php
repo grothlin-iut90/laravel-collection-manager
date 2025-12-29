@@ -10,9 +10,9 @@
             {{ __("You're logged in!") }}
             <br>
             @if (auth()->user()->role === 'consumer')
-            <button onclick="window.location.href='{{ route('collections.index') }}'" class="item-link">Manage my lists</button>
+            <button onclick="window.location.href='{{ route('collections.index') }}'" class="button-primary">Manage my lists</button>
             @elseif (auth()->user()->role === 'provider' || auth()->user()->role === 'admin')
-            <button onclick="window.location.href='{{ route('categories.index') }}'" class="item-link">Manage Categories</button>
+            <button onclick="window.location.href='{{ route('categories.index') }}'" class="button-primary">Manage Categories</button>
             @endif
         </div>
         @if (auth()->user()->role === 'consumer')
@@ -21,7 +21,7 @@
             <div class="item-card">
                 <h2>{{ $item->title }}</h2>
                 <p>{{ $item->description }}</p>
-                <button onclick="window.location.href='{{ route('items.show', $item->id) }}'" class="item-link">View Item</button>
+                <button onclick="window.location.href='{{ route('items.show', $item->id) }}'" class="button-primary">View Item</button>
             </div>
          @endforeach
         </div>
@@ -62,7 +62,7 @@
     .dashboard-content {
         background-color: var(--bg-card);
         color: var(--text-main);
-        border-radius: 1rem;
+        border-radius: 0.5rem;
         padding: 2rem;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         border: 1px solid var(--border-color);
@@ -87,24 +87,6 @@
         margin-bottom: 1rem;
     }
 
-    .item-link {
-        display: inline-block;
-        padding: 0.75rem 1.5rem;
-        background-color: var(--primary-color);
-        color: var(--white);
-        text-decoration: none;
-        border-radius: 0.5rem;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .item-link:hover {
-        background-color: var(--primary-color-hover);
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-    }
-
     .object-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -114,7 +96,7 @@
 
     .item-card {
         background-color: var(--bg-card);
-        border-radius:0 0 1rem 1rem;
+        border-radius:0 0 0.5rem 0.5rem;
         padding: 1.5rem;
         box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
         border: 1px solid var(--border-color);
