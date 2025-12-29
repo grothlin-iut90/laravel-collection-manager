@@ -6,14 +6,33 @@
 @tailwind utilities;
 
 :root {
-    --bg-body: #FDFDFC;
-    --text-main: #1b1b18;
+    --bg-body: #EDEBD7;
+    --bg-hover: #E3DFAF;
+    --text-main: #423E37;
     --text-muted: #555551;
-    --primary-blue: #4A90E2;
-    --primary-blue-hover: #357ABD;
+    --text-header: #423E37;
+    --text-button: #ffffff;
+    --primary-color: #E3B23C;
+    --primary-color-hover: #C39302;
     --border-color: rgba(25, 20, 0, 0.2);
     --border-hover: rgba(25, 21, 1, 0.3);
     --white: #ffffff;
+    --bg-card: #ffffff;
+}
+
+.dark {
+    --bg-body: #0E1116;
+    --bg-hover: #13223a;
+    --text-main: #8ca5ce;
+    --text-muted: #7589aa;
+    --text-header: #e2e0ea;
+    --text-button: #1A1F29;
+    --primary-color: #CB9CF2;
+    --primary-color-hover: #9E7B9B;
+    --border-color: rgba(200, 200, 200, 0.2);
+    --border-hover: rgba(200, 200, 200, 0.3);
+    --white: #ffffff;
+    --bg-card: #1A1F29;
 }
 
 * {

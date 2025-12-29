@@ -18,6 +18,6 @@
 <style>
     h3 {
         margin-top: 20px;
-        background-color: var(--primary-blue);
+        background-color: var(--primary-color);
     }
 </style>

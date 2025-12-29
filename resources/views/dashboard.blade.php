@@ -42,7 +42,7 @@
     h2 {
         font-weight: 600; 
         font-size: 1.25rem; 
-        color: #1f2937; 
+        color: var(--text-header);
         line-height: 1.25;
     }
 
@@ -57,20 +57,20 @@
     }
 
     .dashboard-content {
-        background-color: white; 
         overflow: hidden; 
         box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); 
         border-radius: 0.5rem;
         padding: 1.5rem; 
-        color: #1a202c;
+        color: var(--text-main);
+        background-color: var(--bg-card);
     }
 
     .item-link {
         display: inline-block; 
         margin-top: 1rem; 
         padding: 0.5rem 1.5rem; 
-        background-color: var(--primary-blue); 
-        color: white; 
+        background-color: var(--primary-color); 
+        color: var(--text-button); 
         text-decoration: none; 
         border-radius: 0.125rem; 
         font-size: 0.875rem; 
@@ -78,7 +78,7 @@
     }
 
     .item-link:hover {
-        background-color: var(--primary-blue-hover); 
+        background-color: var(--primary-color-hover); 
     }
 
     .object-grid {

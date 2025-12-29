@@ -10,20 +10,33 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body>
-        <div>
-            @include('layouts.navigation')
+    <body class="font-sans antialiased"
+        x-data="{ 
+            darkMode: localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) 
+        }"
+        x-init="$watch('darkMode', val => {
+            localStorage.setItem('theme', val ? 'dark' : 'light');
+            if (val) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+        if (darkMode) document.documentElement.classList.add('dark');"
+    >
+        <div class="min-h-screen bg-[--bg-body] text-[--text-main] transition-colors duration-300">
+            @auth
+                @include('layouts.navigation')
+            @endauth
 
-            <!-- Page Heading -->
             @isset($header)
-                <header>
+                <header class="bg-[--bg-card] shadow border-b border-[--border-color]">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
                 </header>
             @endisset
 
-            <!-- Page Content -->
             <main>
                 {{ $slot }}
             </main>

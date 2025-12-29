@@ -1,7 +1,5 @@
 <x-app-layout>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=BBH+Bartle&display=swap');
-
         /* Base Reset & Layout */
         * {
             box-sizing: border-box;
@@ -76,7 +74,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1.5rem; /* gap-6 */
+            gap: 1.5rem;
         }
 
         /* Desktop Wrapper Adjustments */
@@ -97,9 +95,9 @@
         .hero-section {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 1rem; /* gap-4 */
+            align-items: flex-start;
+            text-align: left;
+            gap: 1rem;
         }
 
         @media (min-width: 1024px) {
@@ -123,7 +121,7 @@
         }
 
         .highlight-text {
-            color: var(--primary-blue);
+            color: var(--primary-color);
         }
 
         .hero-description {
@@ -137,7 +135,7 @@
             display: inline-block;
             margin-top: 1rem;
             padding: 0.5rem 1.5rem; /* px-6 py-2 */
-            background-color: var(--primary-blue);
+            background-color: var(--primary-color);
             color: var(--white);
             text-decoration: none;
             border-radius: 0.125rem; /* rounded-sm */
@@ -146,7 +144,14 @@
         }
 
         .btn-primary:hover {
-            background-color: var(--primary-blue-hover);
+            background-color: var(--primary-color-hover);
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            width: 100%;
+            margin: 1rem 0;
         }
     </style>
 
@@ -162,6 +167,7 @@
             <h1 class="hero-title">
                 Welcome to <span class="highlight-text">Our Application</span>
             </h1>
+            <hr>
             <p class="hero-description">
                 This is a sample welcome page built with Laravel and converted to vanilla CSS. Explore the features and get started with your project!
             </p>
