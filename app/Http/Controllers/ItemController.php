@@ -111,13 +111,20 @@ class ItemController extends Controller
     }
 
     public function destroy(Item $item)
-    {
-        if (Auth::user()->role !== 'admin' && Auth::id() !== $item->provider_id) {
-            abort(403, 'Unauthorized action.');
-        }
+{
+    if (Auth::user()->role !== 'admin' && Auth::id() !== $item->provider_id) {
+        abort(403, 'Unauthorized action.');
+    }
 
-        $item->delete();
+    $previousUrl = url()->previous();
+    $itemShowUrl = route('items.show', $item);
 
+    $item->delete();
+
+    if ($previousUrl === $itemShowUrl) {
         return redirect()->route('dashboard')->with('success', 'Item deleted successfully.');
     }
+
+    return back()->with('success', 'Item deleted successfully.');
+}
 }

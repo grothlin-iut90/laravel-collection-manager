@@ -15,7 +15,7 @@
                             <label>Label</label>
                             <input type="text" name="label" required>
                         </div>
-                        <button type="submit">Create Category</button>
+                        <button type="submit" class="button-primary">Create Category</button>
                     </form>
                 </div>
             </div>

@@ -10,12 +10,13 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <a href="{{ route('categories.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add New Category</a>
+                    <a href="{{ route('categories.create') }}" class="button-success">Add new category</a>
                     <table class="min-w-full mt-4">
                         <thead></thead>
                             <tr>
                                 <th>Label</th>
                                 <th>Actions</th>
+                                <th>Stats</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -25,7 +26,15 @@
                                 <td>
                                     <a href="{{ route('categories.show', $category) }}" class="button-primary">View</a>
                                     <a href="{{ route('categories.edit', $category) }}" class="button-edit">Edit</a>
+                                    <form action="{{ route('categories.destroy', $category) }}" method="POST" onsubmit="return confirm('Delete this category?');" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="button-danger" {{ $category->items_count > 0 ? 'disabled' : '' }}>
+                                            Delete
+                                        </button>
+                                    </form>
                                 </td>
+                                <td> Has {{ $category->items_count }} item{{ $category->items_count > 1 ? 's' : '' }}</td>
                             </tr>
                             @endforeach
                         </tbody>

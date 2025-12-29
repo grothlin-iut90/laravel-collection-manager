@@ -15,7 +15,7 @@
                             <label>Label</label>
                             <input type="text" name="label" value="{{ $category->label }}" required>
                         </div>
-                        <button type="submit">Update Category</button>
+                        <button type="submit" class="button-primary">Update Category</button>
                     </form>
                 </div>
             </div>
