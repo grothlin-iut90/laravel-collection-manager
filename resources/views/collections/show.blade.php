@@ -46,7 +46,7 @@
         </div>
         <hr>
         <table class="min-w-full" style="background-color: var(--bg-card); margin-top: 20px; border-radius: 8px; overflow: hidden;">
-            <thead>
+            <thead style="border-bottom: 2px solid var(--border-color);">
                 <tr>
                     <th class="py-2 px-4 border-b">Title</th>
                     <th class="py-2 px-4 border-b">Description</th>
@@ -56,7 +56,7 @@
                     <th class="py-2 px-4 border-b">Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody style="border-bottom: 2px solid var(--border-color);">
                 @foreach($items as $item)
                     <tr>
                         <td class="py-2 px-4 border-b">{{ $item->title }}</td>
