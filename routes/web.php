@@ -14,7 +14,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    if (auth()->user()->role === 'consumer') {
+    if (auth()->user()->role === 'consumer' || auth()->user()->role === 'admin') {
         $items = \App\Models\Item::all();
     } elseif (auth()->user()->role === 'provider') {
         $items = \App\Models\Item::where('provider_id', auth()->user()->id)->get();

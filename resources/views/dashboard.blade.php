@@ -21,7 +21,6 @@
 
             @endif
         </div>
-        @if (in_array(auth()->user()->role, ['consumer', 'provider']))
 
             @if(auth()->user()->role === 'provider')
                 <h3 class="text-xl font-bold mb-4">Provided items : </h3>
@@ -36,7 +35,7 @@
                             View Item
                         </button>
 
-                        @if(auth()->user()->role === 'provider')
+                        @if(auth()->user()->role === 'provider' || auth()->user()->role === 'admin')
                             <button onclick="window.location.href='{{ route('items.edit', $item->id) }}'" class="button-success w-full">
                                 Edit
                             </button>
@@ -51,8 +50,15 @@
                     </div>
                 </div>
             @endforeach
+            @if (auth()->user()->role === 'provider' || auth()->user()->role === 'admin')
+                <div>
+                    <button onclick="window.location.href='{{ route('items.create') }}'" class="button-primary">
+                        + Add Item
+                    </button>
+                </div>
+            @endif
+
             </div>
-        @endif
     </div>
 </x-app-layout>
 <style>

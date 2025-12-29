@@ -15,11 +15,12 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <h3>{{ $item->title }}</h3>
+                    <h2>{{ $item->title }}</h2>
                     <p><strong>Description:</strong> {{ $item->description }}</p>
                     <p><strong>Rating:</strong> {{ $item->rating }}/5</p>
                     <p><strong>Condition:</strong> {{ $item->condition }}</p>
                     <p><strong>Category:</strong> {{ $item->category->label }}</p>
+                    <p><strong>Provider:</strong> {{ $item->provider->name }} ({{ $item->provider->email }})</p>
                     @if (auth()->user()->role === 'provider' && auth()->id() === $item->provider_id)
                     <button onclick="window.location.href='{{ route('items.edit', $item->id) }}'" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm mt-4">
                         Edit

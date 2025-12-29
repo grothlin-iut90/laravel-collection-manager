@@ -36,6 +36,18 @@
                             </select>
                         </div>
 
+                        @if(auth()->user()->role === 'admin')
+                            <div class="mt-4">
+                                <label>Assign to Provider</label>
+                                <select name="provider_id" required>
+                                    <option value="">Select a provider...</option>
+                                    @foreach($providers as $provider)
+                                        <option value="{{ $provider->id }}">{{ $provider->name }} ({{ $provider->email }})</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        @endif
+
                         <!-- Obligatoire car pour le moment on stocke un user_id -->
                         <!-- Peut etre a retirer car doublon avec provider_id -->
                         <input type="hidden" name="user_id" value="{{ auth()->id() }}">

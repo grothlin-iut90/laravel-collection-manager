@@ -16,7 +16,17 @@
                     </x-nav-link>
                     @if(auth()->user()->role === 'consumer')
                     <x-nav-link :href="route('collections.index')" :active="request()->routeIs('collections.*')" style="color: var(--text-main);">
-                        {{ __('My Collections') }}
+                        {{ __('My collections') }}
+                    </x-nav-link>
+                    @endif
+                    @if(auth()->user()->role === 'provider' || auth()->user()->role === 'admin')
+                    <x-nav-link :href="route('items.create')" :active="request()->routeIs('items.create')" style="color: var(--text-main);">
+                        {{ __('Add item') }}
+                    </x-nav-link>
+                    @endif
+                    @if(auth()->user()->role === 'admin')
+                    <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')" style="color: var(--text-main);">
+                        {{ __('Manage categories') }}
                     </x-nav-link>
                     @endif
                 </div>

@@ -35,6 +35,19 @@
                                 @endforeach
                             </select>
                         </div>
+
+                        @if(auth()->user()->role === 'admin')
+                            <div>
+                                <label >Assign owner</label>
+                                <select name="provider_id">
+                                    @foreach($providers as $provider)
+                                        <option value="{{ $provider->id }}" {{ $item->provider_id == $provider->id ? 'selected' : '' }}>
+                                            {{ $provider->name }} ({{ $provider->email }})
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        @endif
                         <button type="submit" class="button-success">Update Item</button>
                     </form>
                 </div>
