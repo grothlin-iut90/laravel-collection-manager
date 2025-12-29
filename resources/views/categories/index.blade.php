@@ -23,12 +23,8 @@
                             <tr>
                                 <td>{{ $category->label }}</td>
                                 <td>
-                                    <a href="{{ route('categories.show', $category) }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">View</a>
-                                    <a href="{{ route('categories.edit', $category) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">Edit</a>
-                                    <form action="{{ route('categories.destroy', $category) }}" method="POST" style="display:inline;">
-                                        @csrf @method('DELETE')
-                                        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
-                                    </form>
+                                    <a href="{{ route('categories.show', $category) }}" class="button-primary">View</a>
+                                    <a href="{{ route('categories.edit', $category) }}" class="button-edit">Edit</a>
                                 </td>
                             </tr>
                             @endforeach

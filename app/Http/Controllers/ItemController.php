@@ -72,10 +72,4 @@ class ItemController extends Controller
         $item->delete();
         return redirect()->route('items.index')->with('success', 'Item deleted successfully.');
     }
-
-    public function request(Item $item)
-    {
-        // TODO: Logic to handle item request by a consumer (will add the item to their requested items list)
-        return back()->with('success', 'Item request sent successfully!');
-    }
 }
