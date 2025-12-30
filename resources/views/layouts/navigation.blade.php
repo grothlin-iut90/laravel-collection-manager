@@ -19,14 +19,14 @@
                         {{ __('My collections') }}
                     </x-nav-link>
                     @endif
-                    @if(auth()->user()->role === 'provider' || auth()->user()->role === 'admin')
-                    <x-nav-link :href="route('items.create')" :active="request()->routeIs('items.create')" style="color: var(--text-main);">
-                        {{ __('Add item') }}
-                    </x-nav-link>
-                    @endif
                     @if(auth()->user()->role === 'admin')
                     <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')" style="color: var(--text-main);">
                         {{ __('Manage categories') }}
+                    </x-nav-link>
+                    @endif
+                    @if(auth()->user()->role === 'admin')
+                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')" style="color: var(--text-main);">
+                        {{ __('Manage users') }}
                     </x-nav-link>
                     @endif
                 </div>

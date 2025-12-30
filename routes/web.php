@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\ProfileController;
@@ -31,6 +32,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('items', ItemController::class)->middleware('auth');
+Route::resource('users', UserController::class)->middleware('auth');
 Route::resource('categories', CategoryController::class)->middleware('auth');
 
 Route::resource('collections', CollectionController::class)->middleware('auth');

@@ -28,7 +28,6 @@
                                     <a href="{{ route('categories.edit', $category) }}" class="button-edit">Edit</a>
                                     <form action="{{ route('categories.destroy', $category) }}" method="POST" onsubmit="return confirm('Delete this category?');" class="inline">
                                         @csrf
-                                        @method('DELETE')
                                         <button type="submit" class="button-danger" {{ $category->items_count > 0 ? 'disabled' : '' }}>
                                             Delete
                                         </button>
