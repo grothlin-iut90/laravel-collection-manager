@@ -21,7 +21,7 @@
                         <tbody class="bg-white divide-y divide-gray-200">
                             @foreach($users as $user)
                             <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">{{ $user->name }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ $user->name }} {{ $user->id === auth()->user()->id ? '(you)' : '' }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $user->email }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ ucfirst($user->role) }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -30,7 +30,7 @@
                                     <form action="{{ route('users.destroy', $user) }}" method="POST" onsubmit="return confirm('Delete this user?');" class="inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="button-danger">Delete</button>
+                                        <button type="submit" class="button-danger"  {{ $user->id === auth()->user()->id ? 'disabled' : '' }}>Delete</button>
                                     </form>
                                 </td>
                             </tr>

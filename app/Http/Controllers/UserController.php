@@ -58,7 +58,7 @@ class UserController extends Controller
         ]);
 
         $user->update($request->all());
-        
+
         return redirect()->route('users.show', $user)->with('success', 'User updated successfully.');
     }
 
@@ -69,6 +69,10 @@ class UserController extends Controller
     {
         if(Auth::user()->role !== 'admin') {
             return redirect()->route('users.index')->with('error', 'Unauthorized action.');
+        }
+
+        if($user->id === Auth::user()->id) {
+            return redirect()->route('users.index')->with('error', 'You cannot delete your own account.');
         }
 
         $user->delete();

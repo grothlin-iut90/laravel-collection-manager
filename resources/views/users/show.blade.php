@@ -24,7 +24,7 @@
                     <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Delete this user?');" class="inline">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="button-danger">
+                        <button type="submit" class="button-danger"  {{ $user->id === auth()->user()->id ? 'disabled' : '' }}>
                             Delete User
                         </button>
                     </form>
