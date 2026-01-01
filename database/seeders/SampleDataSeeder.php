@@ -24,7 +24,7 @@ class SampleDataSeeder extends Seeder
             ],
             [
                 'id' => 2,
-                'name' => 'Consumer One',
+                'name' => 'Monsieur Collector',
                 'email' => 'consumer1@example.com',
                 'email_verified_at' => null,
                 'password' => Hash::make('password'),
@@ -49,6 +49,26 @@ class SampleDataSeeder extends Seeder
                 'email_verified_at' => null,
                 'password' => Hash::make('password'),
                 'role' => 'provider',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 5,
+                'name' => 'Madame Tierlist',
+                'email' => 'consumer2@example.com',
+                'email_verified_at' => null,
+                'password' => Hash::make('password'),
+                'role' => 'consumer',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 6,
+                'name' => 'Maitre Occasion',
+                'email' => 'consumer3@example.com',
+                'email_verified_at' => null,
+                'password' => Hash::make('password'),
+                'role' => 'consumer',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -314,6 +334,47 @@ class SampleDataSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'id' => 4,
+                'name' => 'Classic Literature',
+                'description' => 'Books I must keep forever.',
+                'user_id' => 2,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 5,
+                'name' => 'Video Games',
+                'description' => 'My favorite video games.',
+                'user_id' => 5,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 6,
+                'name' => 'Vinyl Collection',
+                'description' => 'Rock and prog vinyls.',
+                'user_id' => 5,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 7,
+                'name' => 'Mangas',
+                'description' => 'Japanese mangas.',
+                'user_id' => 5,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'id' => 8,
+                'name' => 'Ultimate Collection',
+                'description' => 'All my rarest items.',
+                'user_id' => 6,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
 
         // Insert item_collection pivot
@@ -327,6 +388,28 @@ class SampleDataSeeder extends Seeder
             ['item_id' => 8, 'collection_id' => 3], // Dark Side of the Moon in Rare Items
             ['item_id' => 10, 'collection_id' => 3], // One Piece Tome 1 in Rare Items
             ['item_id' => 14, 'collection_id' => 3], // Charizard in Rare Items
+            // Consumer 2
+            ['item_id' => 1, 'collection_id' => 4],
+            ['item_id' => 3, 'collection_id' => 4],
+
+            // Consumer 5
+            ['item_id' => 5, 'collection_id' => 5],
+            ['item_id' => 13, 'collection_id' => 5],
+
+            ['item_id' => 8, 'collection_id' => 6],
+            ['item_id' => 9, 'collection_id' => 6],
+
+            ['item_id' => 10, 'collection_id' => 7],
+
+            // Consumer 6
+            ['item_id' => 4, 'collection_id' => 8],
+            ['item_id' => 5, 'collection_id' => 8],
+            ['item_id' => 7, 'collection_id' => 8],
+            ['item_id' => 8, 'collection_id' => 8],
+            ['item_id' => 10, 'collection_id' => 8],
+            ['item_id' => 11, 'collection_id' => 8],
+            ['item_id' => 12, 'collection_id' => 8],
+            ['item_id' => 14, 'collection_id' => 8],
         ]);
     }
 }

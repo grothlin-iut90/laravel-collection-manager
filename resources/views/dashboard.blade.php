@@ -1,16 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="dashboard-title">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
 
     <div class="container">
         <div class="dashboard-content">
-            {{ __("You're logged in!") }}
-            <br>
             @if (auth()->user()->role === 'consumer')
-                <button onclick="window.location.href='{{ route('collections.index') }}'" class="button-primary">Manage my lists</button>
+                <button onclick="window.location.href='{{ route('collections.index') }}'" class="button-primary">Manage my collections</button>
             @elseif (auth()->user()->role === 'provider' || auth()->user()->role === 'admin')
                 <button onclick="window.location.href='{{ route('items.create') }}'" class="button-primary">
                     + Add Item
