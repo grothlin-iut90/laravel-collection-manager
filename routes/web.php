@@ -39,6 +39,7 @@ Route::resource('users', UserController::class)->middleware('auth');
 Route::resource('categories', CategoryController::class)->middleware('auth');
 
 Route::resource('collections', CollectionController::class)->middleware('auth');
+Route::post('collections', [CollectionController::class, 'indexByUser'])->name('collections.indexByUser')->middleware('auth');
 Route::post('collections/add-item', [CollectionController::class, 'addItem'])->name('collections.addItem')->middleware('auth');
 Route::delete('collections/{collection}/remove-item/{itemId}', [CollectionController::class, 'removeItem'])->name('collections.removeItem')->middleware('auth');
 Route::post('collections/{collection}/edit/title', [CollectionController::class, 'editTitle'])->name('collections.editTitle')->middleware('auth');

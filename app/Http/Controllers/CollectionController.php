@@ -19,6 +19,17 @@ class CollectionController extends Controller
     }
 
     /**
+     * Display a listing of the resource by user.
+     */
+    public function indexByUser(User $user)
+    {
+        $collections = $user->collections()->with(['items' => function ($query) {
+            $query->limit(5);
+        }])->withCount('items')->get();
+        return redirect()->route('collections.index', compact('collections'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      */
     public function create()
