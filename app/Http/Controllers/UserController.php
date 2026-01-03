@@ -78,4 +78,19 @@ class UserController extends Controller
         $user->delete();
         return redirect()->route('users.index')->with('success', 'User deleted successfully.');
     }
+
+    /**
+     * Display a listing of the resource by user.
+     */
+    public function collection(User $user)
+    {
+        if(Auth::user()->role !== 'admin') {
+            return redirect()->route('users.index')->with('error', 'Unauthorized action.');
+        }
+
+        $collections = $user->collections()->with(['items' => function ($query) {
+            $query->limit(5);
+        }])->withCount('items')->get();
+        return view('collections.index', compact('collections'));
+    }
 }
