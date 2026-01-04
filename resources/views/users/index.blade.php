@@ -32,9 +32,6 @@
                                         @method('DELETE')
                                         <button type="submit" class="button-danger"  {{ $user->id === auth()->user()->id ? 'disabled' : '' }}>Delete</button>
                                     </form>
-                                    @if($user->role === 'consumer')
-                                        <button onclick="window.location.href='{{ route('user.collections', $user) }}'" class="button-success">Edit collection</button>
-                                    @endif
                                 </td>
                             </tr>
                             @endforeach

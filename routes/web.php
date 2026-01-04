@@ -34,6 +34,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::delete('/admin/collections/{collection}', [UserController::class, 'destroyCollection'])->name('admin.collections.destroy');
+
 Route::resource('items', ItemController::class)->middleware('auth');
 Route::resource('users', UserController::class)->middleware('auth');
 Route::get('users/{user}/collections', [UserController::class, 'collection'])->name('user.collections')->middleware('auth');

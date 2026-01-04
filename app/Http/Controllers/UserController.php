@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -92,5 +93,19 @@ class UserController extends Controller
             $query->limit(5);
         }])->withCount('items')->get();
         return view('collections.index', compact('collections'));
+    }
+
+    /**
+     * Remove a collection belonging to a user (Admin Action)
+     */
+    public function destroyCollection(Collection $collection)
+    {
+        if(Auth::user()->role !== 'admin') {
+            return back()->with('error', 'Unauthorized action.');
+        }
+
+        $collection->delete();
+
+        return back()->with('success', 'Collection deleted successfully.');
     }
 }
