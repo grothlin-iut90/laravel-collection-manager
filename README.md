@@ -74,7 +74,7 @@ A Laravel-based web application for managing personal collections of items. User
 After seeding, you can log in with these accounts:
 
 - **Consumer**: consumer1@example.com / password
-- **Provider**: provider1@example.com / password
+- **Provider**: amazon@example.com / password
 - **Admin**: admin1@example.com / password
 
 ### Key Workflows
