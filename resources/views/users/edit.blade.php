@@ -77,8 +77,11 @@
                                                         {{ $collection->items->count() }}
                                                     </span>
                                                 </td>
-                                                <td class="px-6 py-4 text-right">
-                                                    <form action="{{ route('admin.collections.destroy', $collection) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this collection? This action cannot be undone.');">
+                                                <td class="px-6 py-4 text-right flex justify-end items-center gap-3">
+                                                    <button onclick="window.location='{{ route('admin.collections.show', $collection) }}'" class="button-primary text-sm" style="padding: 0.25rem 0.75rem;">
+                                                        Edit
+                                                    </button>
+                                                    <form action="{{ route('admin.collections.destroy', $collection) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this collection?');">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="button-danger text-sm" style="padding: 0.25rem 0.75rem;">
