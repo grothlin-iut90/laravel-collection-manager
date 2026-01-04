@@ -10,7 +10,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <a href="{{ route('categories.create') }}" class="button-success">Add new category</a>
+                    <a href="{{ route('categories.create') }}" class="button-primary">+ Add new category</a>
                     <table class="min-w-full mt-4">
                         <thead></thead>
                             <tr>
@@ -25,7 +25,7 @@
                                 <td>{{ $category->label }}</td>
                                 <td>
                                     <a href="{{ route('categories.show', $category) }}" class="button-primary">View</a>
-                                    <a href="{{ route('categories.edit', $category) }}" class="button-edit">Edit</a>
+                                    <a href="{{ route('categories.edit', $category) }}" class="button-success">Edit</a>
                                     <form action="{{ route('categories.destroy', $category) }}" method="POST" onsubmit="return confirm('Delete this category?');" class="inline">
                                         @csrf
                                         <button type="submit" class="button-danger" {{ $category->items_count > 0 ? 'disabled' : '' }}>

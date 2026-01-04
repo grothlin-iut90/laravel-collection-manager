@@ -47,7 +47,7 @@
                         Edit
                     </button>
                     <form action="{{ route('items.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Delete this item?');" class="inline">
-                        @csrf
+                        @csrf   
                         @method('DELETE')
                         <button type="submit" class="button-danger w-full" {{ $item->category->items_count > 0 ? 'disabled' : '' }}>
                             Delete
