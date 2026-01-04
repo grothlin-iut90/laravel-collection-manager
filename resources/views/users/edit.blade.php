@@ -90,6 +90,9 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                <div class="flex justify-between items-center mb-4">
+                                    <button class="button-primary" onclick="window.location='{{ route('admin.collections.create', ['user' => $user->id]) }}'" >+ New collection</button>
+                                    </div>
                             </div>
                         @else
                             <div class="text-center py-4" style="color: var(--text-muted);">

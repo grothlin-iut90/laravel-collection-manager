@@ -1,11 +1,18 @@
 <?php
 
+// Middleware
+use App\Http\Middleware\AdminMiddleware;
+
+// Controllers
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminCollectionController;
+
+// Routing
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -32,6 +39,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/users/{user}/collections/create', [AdminCollectionController::class, 'create'])->name('collections.create');
+
+    Route::post('/users/{user}/collections', [AdminCollectionController::class, 'store'])->name('collections.store');
+
+    Route::get('/collections/{collection}', [AdminCollectionController::class, 'show'])->name('collections.show');
+
+    Route::post('/collections/{collection}/items', [AdminCollectionController::class, 'addItem'])->name('collections.items.add');
+    Route::delete('/collections/{collection}/items/{item}', [AdminCollectionController::class, 'removeItem'])->name('collections.items.remove');
 });
 
 Route::delete('/admin/collections/{collection}', [UserController::class, 'destroyCollection'])->name('admin.collections.destroy');
