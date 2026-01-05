@@ -15,7 +15,7 @@
 
     <div class="py-12">
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
-            
+
             <div class="mb-8 text-center">
                 <div class="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4" style="background-color: rgba(155, 204, 103, 0.1);">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="color: var(--success-color);">
@@ -30,7 +30,7 @@
 
             <div class="shadow-lg rounded-lg overflow-hidden mb-6" style="background-color: var(--bg-card); border: 1px solid var(--border-color);">
                 <div style="height: 6px; background: linear-gradient(90deg, var(--success-color), var(--success-color-hover));"></div>
-                
+
                 <div class="p-8">
                     <form action="{{ route('users.update', $user) }}" method="POST" class="space-y-6">
                         @csrf
@@ -126,7 +126,8 @@
                                                         {{ $collection->items->count() }}
                                                     </span>
                                                 </td>
-                                                <td class="px-6 py-4 text-right">
+                                                <td class="px-6 py-4 text-right space-x-2 flex justify-end items-center">
+                                                    <button onclick="window.location='{{ route('admin.collections.show', $collection) }}'" class="button-success text-sm">Edit</button>
                                                     <form action="{{ route('admin.collections.destroy', $collection) }}" method="POST" onsubmit="return confirm('Delete this collection?');">
                                                         @csrf
                                                         @method('DELETE')

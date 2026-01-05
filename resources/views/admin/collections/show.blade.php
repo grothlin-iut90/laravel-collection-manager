@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl leading-tight" style="color: var(--text-header);">
                 Manage Collection: {{ $collection->name }}
             </h2>
-            <a href="{{ route('users.edit', $collection->user) }}" class="button-return">
+            <a href="{{ route('users.edit', $collection->user) }}" class="button-return" style="right:0; position: absolute; margin-right: 10%;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
                 </svg>
@@ -15,11 +15,10 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
             <!-- Collection Info Card -->
             <div class="shadow-lg rounded-lg overflow-hidden mb-6" style="background-color: var(--bg-card); border: 1px solid var(--border-color);">
                 <div style="height: 6px; background: linear-gradient(90deg, var(--secondary-color), var(--secondary-color-hover));"></div>
-                
+
                 <div class="p-6">
                     <div class="flex items-start justify-between mb-4">
                         <div class="flex items-center gap-4 flex-1">
@@ -31,7 +30,7 @@
                             <div>
                                 <h3 class="text-2xl font-bold" style="color: var(--text-header);">{{ $collection->name }}</h3>
                                 <p class="text-sm" style="color: var(--text-muted);">
-                                    Owner: <strong>{{ $collection->user->name }}</strong> • 
+                                    Owner: <strong>{{ $collection->user->name }}</strong> •
                                     {{ $collection->items->count() }} {{ $collection->items->count() === 1 ? 'item' : 'items' }}
                                 </p>
                             </div>
@@ -56,14 +55,14 @@
                         Add Item to Collection
                     </h3>
                 </div>
-                
+
                 <div class="p-6">
                     <form action="{{ route('admin.collections.items.add', $collection) }}" method="POST" class="flex gap-3">
                         @csrf
                         <select name="item_id" class="flex-1" style="margin-bottom: 0;">
                             @foreach(App\Models\Item::all() as $item)
-                                <option value="{{ $item->id }}">
-                                    {{ $item->title }} ({{ $item->category->label }}) - ID: {{ $item->id }}
+                                <option value="{{ $item->id }}" @if($collection->items->contains($item)) disabled @endif>
+                                    {{ $item->title }} ({{ $item->category->label }}) - ID: {{ $item->id }} @if($collection->items->contains($item)) [Already in Collection] @endif
                                 </option>
                             @endforeach
                         </select>
@@ -87,7 +86,7 @@
                         Items in this Collection
                     </h3>
                 </div>
-                
+
                 <div class="p-6">
                     @if($collection->items->isEmpty())
                         <div class="text-center py-12" style="border: 2px dashed var(--border-color); border-radius: 0.5rem;">
