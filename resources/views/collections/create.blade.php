@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl leading-tight" style="color: var(--text-header);">
                 {{ __('Create New Collection') }}
             </h2>
-            <a href="{{ route('collections.index') }}" class="button-return" style="margin-left: 20px;">
+            <a href="{{ route('collections.index') }}" class="button-return" style="right: 0; position: absolute; margin-right: 10%;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" >
                     <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
                 </svg>
@@ -15,7 +15,7 @@
 
     <div class="py-12">
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
-            
+
             <div class="mb-8 text-center">
                 <div class="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4" style="background-color: rgba(162, 62, 72, 0.1);">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="color: var(--secondary-color);">
@@ -40,11 +40,11 @@
                                 </svg>
                                 Collection Name *
                             </label>
-                            <input 
-                                type="text" 
-                                id="name" 
-                                name="name" 
-                                required 
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                required
                                 placeholder="e.g., My Favorite Books, Rare Vinyl Collection..."
                                 value="{{ old('name') }}"
                                 style="margin-bottom: 0;"
@@ -61,10 +61,10 @@
                                 </svg>
                                 Description (Optional)
                             </label>
-                            <textarea 
-                                id="description" 
-                                name="description" 
-                                rows="4" 
+                            <textarea
+                                id="description"
+                                name="description"
+                                rows="4"
                                 placeholder="Add a description to help you remember what this collection is about..."
                                 style="margin-bottom: 0; resize: vertical;"
                             >{{ old('description') }}</textarea>

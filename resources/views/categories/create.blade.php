@@ -15,7 +15,7 @@
 
     <div class="py-12">
         <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
-            
+
             <div class="mb-8 text-center">
                 <div class="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4" style="background-color: rgba(162, 62, 72, 0.1);">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="color: var(--secondary-color);">
@@ -30,11 +30,11 @@
 
             <div class="shadow-lg rounded-lg overflow-hidden" style="background-color: var(--bg-card); border: 1px solid var(--border-color);">
                 <div style="height: 6px; background: linear-gradient(90deg, var(--secondary-color), var(--secondary-color-hover));"></div>
-                
+
                 <div class="p-8">
                     <form action="{{ route('categories.store') }}" method="POST">
                         @csrf
-                        
+
                         <div class="mb-6">
                             <label for="label" class="block text-sm font-semibold mb-2" style="color: var(--text-header);">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">

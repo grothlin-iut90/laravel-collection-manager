@@ -4,18 +4,15 @@
             <h2 class="font-semibold text-xl leading-tight" style="color: var(--text-header);">
                 {{ __('My Collections') }}
             </h2>
-            <a href="{{ route('collections.create') }}" class="button-primary inline-flex items-center gap-2" style="margin-left: 20px;">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                </svg>
-                Create New Collection
+            <a href="{{ route('collections.create') }}" class="button-return" style="right: 0; position: absolute; margin-right: 10%;">
+                + Create New Collection
             </a>
         </div>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            
+
             <div class="mb-8">
                 <div class="flex items-center gap-3 mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="color: var(--primary-color);">
@@ -29,87 +26,87 @@
             </div>
 
             @if($collections->isEmpty())
-                <div class="shadow-lg rounded-lg p-12 text-center" style="background-color: var(--bg-card); border: 1px solid var(--border-color);">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="color: var(--text-muted); opacity: 0.5;">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+            <div class="shadow-lg rounded-lg p-12 text-center" style="background-color: var(--bg-card); border: 1px solid var(--border-color);">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="color: var(--text-muted); opacity: 0.5;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+                <h3 class="text-xl font-bold mb-2" style="color: var(--text-header);">No Collections Yet</h3>
+                <p class="mb-6" style="color: var(--text-muted);">
+                    Start organizing your items by creating your first collection.
+                </p>
+                <a href="{{ route('collections.create') }}" class="button-primary inline-flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                     </svg>
-                    <h3 class="text-xl font-bold mb-2" style="color: var(--text-header);">No Collections Yet</h3>
-                    <p class="mb-6" style="color: var(--text-muted);">
-                        Start organizing your items by creating your first collection.
-                    </p>
-                    <a href="{{ route('collections.create') }}" class="button-primary inline-flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                        </svg>
-                        Create Your First Collection
-                    </a>
-                </div>
+                    Create Your First Collection
+                </a>
+            </div>
             @else
-                <div class="collections-grid">
-                    @foreach($collections as $collection)
-                        <div class="collection-card">
-                            <div class="collection-card-header">
-                                <h3>{{ $collection->name }}</h3>
-                                <span class="collection-count-badge">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                                    </svg>
-                                    {{ $collection->items_count }}
-                                </span>
-                            </div>
-                            
-                            @if($collection->description)
-                                <p class="collection-description">{{ Str::limit($collection->description, 120) }}</p>
-                            @else
-                                <p class="collection-description" style="opacity: 0.6; font-style: italic;">No description provided</p>
-                            @endif
-
-                            @if($collection->items->isNotEmpty())
-                                <div class="collection-preview">
-                                    <p class="collection-preview-label">Recent items:</p>
-                                    <ul class="collection-items-list">
-                                        @foreach($collection->items as $item)
-                                            <li>
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                                                </svg>
-                                                {{ $item->title }}
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @else
-                                <div class="collection-empty">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
-                                    </svg>
-                                    <p>Empty collection</p>
-                                </div>
-                            @endif
-
-                            <div class="collection-actions">
-                                <button onclick="window.location.href='{{ route('collections.show', $collection) }}'" class="button-primary flex-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                    </svg>
-                                    View Collection
-                                </button>
-                            </div>
-                        </div>
-                    @endforeach
-
-                    <div class="collection-card add-collection-card">
-                        <div class="add-collection-content">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4" />
+            <div class="collections-grid">
+                @foreach($collections as $collection)
+                <div class="collection-card">
+                    <div class="collection-card-header">
+                        <h3>{{ $collection->name }}</h3>
+                        <span class="collection-count-badge">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                             </svg>
-                            <button onclick="window.location.href='{{ route('collections.create') }}'" class="button-primary">
-                                Create New Collection
-                            </button>
-                        </div>
+                            {{ $collection->items_count }}
+                        </span>
+                    </div>
+
+                    @if($collection->description)
+                    <p class="collection-description">{{ Str::limit($collection->description, 120) }}</p>
+                    @else
+                    <p class="collection-description" style="opacity: 0.6; font-style: italic;">No description provided</p>
+                    @endif
+
+                    @if($collection->items->isNotEmpty())
+                    <div class="collection-preview">
+                        <p class="collection-preview-label">Recent items:</p>
+                        <ul class="collection-items-list">
+                            @foreach($collection->items as $item)
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                </svg>
+                                {{ $item->title }}
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @else
+                    <div class="collection-empty">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+                        </svg>
+                        <p>Empty collection</p>
+                    </div>
+                    @endif
+
+                    <div class="collection-actions">
+                        <button onclick="window.location.href='{{ route('collections.show', $collection) }}'" class="button-primary flex-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            View Collection
+                        </button>
                     </div>
                 </div>
+                @endforeach
+
+                <div class="collection-card add-collection-card">
+                    <div class="add-collection-content">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4" />
+                        </svg>
+                        <button onclick="window.location.href='{{ route('collections.create') }}'" class="button-primary">
+                            Create New Collection
+                        </button>
+                    </div>
+                </div>
+            </div>
             @endif
 
         </div>
